@@ -102,6 +102,13 @@ public class Library {
 			}
 		}
 	}
+	// Show the all books in the library
+	public void showAllBooks() {
+		System.out.println("Available Books:");
+		for (Book book : _catalog) {
+			System.out.println(book);
+		}
+	}
    
    //Show members of in the library
    public void showMembers() {
