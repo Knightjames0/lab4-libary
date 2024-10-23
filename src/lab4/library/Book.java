@@ -7,7 +7,7 @@ public class Book {
 	private String _title;
 	private boolean _isAvailable; 
 	
-	// TODO: implement Book functionality 
+	// Done: implement Book functionality 
 	public Book(String title){
 		_title = title;
 		_isAvailable = true;
