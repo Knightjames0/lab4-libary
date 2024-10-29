@@ -9,16 +9,16 @@ public class Book {
 	
 	// Done: implement Book functionality 
 	public Book(String title){
-		_title = title;
-		_isAvailable = true;
+		this._title = title;
+		this._isAvailable = true;
 	}
 
-	public boolean isAvailable(){
+	public boolean getIsAvailable(){
 		return _isAvailable;
 	}
 
 	public void setIsAvailable(Boolean state){
-		_isAvailable = state;
+		this._isAvailable = state;
 	}
 	public String getTitle(){
 		return _title;
