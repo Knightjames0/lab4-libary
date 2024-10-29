@@ -23,15 +23,18 @@ public class Library {
 
 
 	 // Adds a book to the library catalog
-	public void addBook(String bookName) {
-			_catalog.add(new Book(bookName));
-			System.out.println(bookName + " has been added to the catalog.");
+	public void addBook(String bookName, String authorName) {
+		_catalog.add(new Book(bookName, authorName));
+		System.out.println(bookName + " has been added to the catalog.");
 		
 	}
 	private Member findMemberByName(String name){
 		for (Member member : _members) {
-			
+			if(member.get_name().equals(name)){
+				return member;
+			}
 		}
+		//member not found in list of members
 		return null;
 	} 
 	private Book findBookByTitle(String title){
@@ -48,7 +51,7 @@ public class Library {
 		if(findMemberByName(memberName) == null){
 			System.out.println("Member " + memberName + " already exists.");
 		}else{
-			//_members.add(new Member(memberName));// or in LibrarianController class
+			_members.add(new Member(memberName));// or in LibrarianController class
 			System.out.println("Member " + memberName + " has been added.");
 		}
 	}
@@ -66,10 +69,7 @@ public class Library {
 			return;
 		}
 		if (book.getIsAvailable()) {
-			//member stuff
-			//availableBooks.remove(bookName);
-			//memberBorrowedBooks.get(memberName).add(bookName);
-			book.setIsAvailable(false);
+			member.borrowBook(book);
 			System.out.println(memberName + " has successfully borrowed " + bookName);
 		} else {
 			System.out.println(bookName + " is already borrowed.");
@@ -83,6 +83,16 @@ public class Library {
 		if (member == null) {
 			System.out.println("Member " + memberName + " not found.");
 			return;
+		}
+		if(book == null){
+			System.out.println("Book " + bookName + " not found.");
+			return;
+		}
+		if(member.hasBorrowedBook(book)){
+			member.returnBook(book);
+			System.out.println(memberName + " has successfully returned " + bookName);
+		}else{
+			System.out.println(memberName + " didn't borrow " + bookName);
 		}
 		//member borrow stuff
 		// if (memberBorrowedBooks.get(memberName).contains(bookName)) {
