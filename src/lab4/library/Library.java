@@ -24,8 +24,9 @@ public class Library {
 
 	 // Adds a book to the library catalog
 	public void addBook(String bookName) {
-		_catalog.add(new Book(bookName));
-		System.out.println(bookName + " has been added to the catalog.");
+			_catalog.add(new Book(bookName));
+			System.out.println(bookName + " has been added to the catalog.");
+		
 	}
 	private Member findMemberByName(String name){
 		for (Member member : _members) {
@@ -35,7 +36,7 @@ public class Library {
 	} 
 	private Book findBookByTitle(String title){
 		for (Book book : _catalog) {
-			if(book.getTitle() == title){
+			if(book.getTitle().equals(title)){
 				return book;
 			}
 		}
@@ -55,7 +56,7 @@ public class Library {
 	// Borrow a book from the library
 	public void borrowBook(String bookName, String memberName) {
 		Member member = findMemberByName(memberName);
-		Book book = findBookByTitle(memberName);
+		Book book = findBookByTitle(bookName);
 		if(member == null){
 			System.out.println("Member " + memberName + " not found.");
 			return;
@@ -64,7 +65,7 @@ public class Library {
 			System.out.println(bookName + " is not available.");
 			return;
 		}
-		if (book.isAvailable()) {
+		if (book.getIsAvailable()) {
 			//member stuff
 			//availableBooks.remove(bookName);
 			//memberBorrowedBooks.get(memberName).add(bookName);
@@ -78,7 +79,7 @@ public class Library {
 	// Return a book to the library
 	public void returnBook(String bookName, String memberName) {
 		Member member = findMemberByName(memberName);
-		Book book = findBookByTitle(memberName);
+		Book book = findBookByTitle(bookName);
 		if (member == null) {
 			System.out.println("Member " + memberName + " not found.");
 			return;
@@ -97,7 +98,7 @@ public class Library {
 	public void showAvailableBooks() {
 		System.out.println("Available Books:");
 		for (Book book : _catalog) {
-			if(book.isAvailable()){
+			if(book.getIsAvailable()){
 				System.out.println(book);
 			}
 		}
