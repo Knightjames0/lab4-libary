@@ -51,7 +51,7 @@ public class Library {
 		if(findMemberByName(memberName) == null){
 			System.out.println("Member " + memberName + " already exists.");
 		}else{
-			_members.add(new Member(memberName));// or in LibrarianController class
+			_members.add(new Member(memberName));// add new member
 			System.out.println("Member " + memberName + " has been added.");
 		}
 	}
@@ -94,14 +94,6 @@ public class Library {
 		}else{
 			System.out.println(memberName + " didn't borrow " + bookName);
 		}
-		//member borrow stuff
-		// if (memberBorrowedBooks.get(memberName).contains(bookName)) {
-		// 	memberBorrowedBooks.get(memberName).remove(bookName);
-		// 	availableBooks.add(bookName);
-		// 	System.out.println(memberName + " has successfully returned " + bookName);
-		// } else {
-		// 	System.out.println(memberName + " didn't borrow " + bookName);
-		// }
 	}
    
 	// Show the available books in the library
@@ -128,6 +120,22 @@ public class Library {
 		  System.out.println(member);
 	  }
    }
+
+
+public void removeBook(String bookName) {
+	Book book = findBookByTitle(bookName);
+	if(book == null){
+		System.out.println("Book " + bookName + " not found.");
+		return;
+	}
+	if(book.getIsAvailable()){
+		_catalog.remove(book);
+		System.out.println("Book " + bookName + " was removed from the libary.");
+	}else{
+		//Is borrowed by a member
+		System.out.println("Book " + bookName + " is currently borrowed.");
+	}
+}
 
 
 }

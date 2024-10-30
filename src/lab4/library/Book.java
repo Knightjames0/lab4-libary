@@ -25,8 +25,9 @@ public class Book {
 	public String getTitle(){
 		return _title;
 	}
+	@Override
 	public String toString(){
-		return _title + " " + _authorName;
+		return "Book{title=" + _title + ",author=" + _authorName + '}';
 	}
 	
 }
